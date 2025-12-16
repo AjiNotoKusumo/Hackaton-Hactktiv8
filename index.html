@@ -1,38 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trip Story</title>
-    <link rel="stylesheet" href="style.css">
+    <title>PixelArt Website</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css"> <!-- Link ke file CSS eksternal -->
+    
 </head>
 <body>
-
-
     <nav>
-        <div class="">
-            <img src="/image/Cat Meme GIF by DOMCAKE.gif" alt="logo-home" class="logo-img">
-        </div>
-        <ul>
-            <li>
-                <a href="#">Home</a>
-            </li>
-            <li>
-                <a href="#">Recomended</a>
-            </li>
-            <li>
-                <a href="#">Katalog</a>
-            </li>
-        </ul>
-
-
-        <button class="nav-btn">SHARE</button>
+                <a href="#home">Home</a>
+                <a href="#recommendation">Recommendation</a>
+                <a href="#place">Place</a>
     </nav>
 
-    <section id="Home">Home</section>
-    <section id="Recomended">Recomended</section>
-    <section id="Places">Places</section>
+    <section id="home">
+        
+        <div class="text-section">
+            <h1>Pixel Art <br> Adventure</h1> <!-- Header maksimal 2 kata per baris -->
+            <p>Selamat datang di dunia pixelart yang penuh nostalgia! Di sini, Anda akan menemukan rekomendasi tempat-tempat unik dengan gaya retro. Jelajahi dunia 8-bit yang tak terlupakan.</p>
+        </div>
+    </section>
 
+    <section id="recommendation">
+        <h2>Recommendation</h2>
+        <p>Tempat-tempat terbaik untuk penggemar pixelart: Museum Game Retro, Festival Pixel, dan Komunitas Online.</p>
+    </section>
 
- </body>   
+    <section id="place">
+        <h2>Place</h2>
+        <p>Jelajahi lokasi-lokasi ikonik seperti Arcade Klasik di Tokyo atau Studio Pixel di San Francisco.</p>
+    </section>
+
+    <script>
+        // Smooth scroll untuk navbar
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
 </html>
