@@ -52,6 +52,7 @@ section {
     align-items: center;
     justify-content: center;
     border-bottom: 4px solid white;
+    scroll-margin-top: 60px;
 }
 #home {
     background-image: url('image/8351240.gif');
@@ -90,15 +91,62 @@ section {
     border: 4px solid #000; /* Border hitam untuk kontras */
     box-shadow: 0 0 10px #000; /* Shadow hitam */
 }
-#recommendation, #place {
-    text-align: center;
+#recomendation{
+    background-image: url('image/8351240.gif');
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 10vh;
+    flex-direction: row;
+    align-items: flex-start;
 }
-#recommendation h2, #place h2 {
-    font-size: 20px;
+
+#place {
+  position: relative;        /* acuan absolute */
+  padding: 4rem 3rem;
+  background-color: transparent;
+  color: white;
+  min-height: 300px;
+  height: 100vh;
 }
-#recommendation p, #place p {
-    font-size: 12px;
+
+/* h2 pojok kiri atas */
+#place h2 {
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  margin: 0;
+  font-size: 2rem;
+  margin-top: 1.5rem;
 }
+
+/* paragraf */
+
+/* button */
+.place-btn {
+    font-family: 'Press Start 2P', monospace;
+    position: absolute;
+    margin-top: 1.5rem;
+    padding: 0.8rem 1.8rem;
+    border: none;
+    border-radius: 30px;
+    background-color: #ff4655;
+    color: white;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: 0.3s ease;
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    
+}
+
+.place-btn:hover {
+
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
 /* Responsivitas */
 @media (max-width: 768px) {
     #home {
