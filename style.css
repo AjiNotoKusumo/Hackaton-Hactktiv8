@@ -62,23 +62,23 @@ section {
     height: 10vh;
     flex-direction: row;
     align-items: flex-start;
+    height: 75vh;
 }
 .text-section {
-    flex: 1;
-    padding-right: 60%;
+  text-align: center;
 }
+
 .text-section h1 {
-    font-size: 24px;
-    margin-bottom: 20px;
-    word-wrap: break-word;
-    max-width: 100%;
-    margin-left: 40%;
+  font-size: 30px;
+  margin-bottom: 20px;
+  max-width: 100%;
 }
+
 .text-section p {
-    font-size: 12px;
-    line-height: 1.5;
-    margin-left: 40%;
+  font-size: 10px;
+  line-height: 1.5;
 }
+
 .image-section {
     flex: 0 0 75%; /* 3/4 dari lebar section */
     display: flex;
@@ -91,15 +91,52 @@ section {
     border: 4px solid #000; /* Border hitam untuk kontras */
     box-shadow: 0 0 10px #000; /* Shadow hitam */
 }
-#recomendation{
-    background-image: url('image/8351240.gif');
-    background-size: cover; 
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 10vh;
-    flex-direction: row;
-    align-items: flex-start;
+.audio-btn {
+    font-family: 'Press Start 2P', monospace;
+    position: absolute;
+    margin-bottom: 1.5rem;
+    padding: 0.8rem 1.8rem;
+    border: none;
+    border-radius: 30px;
+    background-color: #ff4655;
+    color: white;
+    cursor: pointer;
+    font-size: 5%;
+    transition: 0.3s ease;
+    position: absolute;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    
 }
+
+.audio-btn:hover {
+ transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+
+#Favorit {
+
+  position: relative;
+  padding: 4rem 3rem;
+  background-color: transparent;
+  color: white;
+  min-height: 300px;
+  background-image: url(image/8bit\ GIF.gif);
+  background-size: cover;
+  height: 50vh;
+}
+
+#Favorit h2 {
+  position: absolute;
+  top: 2.5rem;
+  left: 1.5rem;
+  margin: 0;
+  font-size: 2rem;
+}
+
+
+
 
 #place {
   position: relative;        /* acuan absolute */
@@ -108,6 +145,8 @@ section {
   color: white;
   min-height: 300px;
   height: 100vh;
+  background-image: url(image/8351332.gif);
+  background-size: cover;
 }
 
 /* h2 pojok kiri atas */
