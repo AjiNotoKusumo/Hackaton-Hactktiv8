@@ -5,23 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PixelArt Website</title>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    <link rel="stylesheet" href="bootstrap.css">
     <link rel="stylesheet" href="style.css"> <!-- Link ke file CSS eksternal -->
-    
+    <script src="script1.js" defer></script>
 </head>
 <body>
     <nav>
                 <a href="#home">Home</a>
-                <a href="#recommendation">Recommendation</a>
+                <a href="#Favorit">Favorit</a>
                 <a href="#place">Place</a>
     </nav>
 
     <section id="home">
         
         <div class="text-section">
-            <h1>Pixel Art <br> Adventure</h1> <!-- Header maksimal 2 kata per baris -->
+            <h1>PIXEL WORLD</h1> <!-- Header maksimal 2 kata per baris -->
             <p>Selamat dtg di dunia pixelart yang penuh nostalgia! Di sini, Anda akan menemukan rekomendasi tempat-tempat unik dengan gaya retro. Jelajahi dunia 8-bit yang tak terlupakan.</p>
         </div>
-        <button onclick="playAudio()">🔊 Play Audio</button>
+        <button class="audio-btn" onclick="playAudio()">🔊 Play Audio</button>
 
 <audio id="audio">
   <source src='sound/Terraria Music - Day.mp3' type="audio/mpeg">
@@ -35,15 +38,113 @@ document.addEventListener("click", function playOnce() {
 
     </section>
 
-    <section id="recommendation">
-        <h2>Recommendation</h2>
-        <p>Tempat-tempat terbaik untuk penggemar pixelart: Museum Game Retro, Festival Pixel, dan Komunitas Online.</p>
+    <section id="Favorit">
+        <h2 id="favoritTitle">Favorit</h2>
+        <!-- <p>Tempat-tempat terbaik untuk penggemar pixelart: Museum Game Retro, Festival Pixel, dan Komunitas Online.</p> -->
+        <div class="favorite-viewport">
+        <div id="favoritePlace"></div>
+        </div>
     </section>
 
     <section id="place">
+        <div class="place-header"></div>
         <h2>Place</h2>
         <!-- <p>Jelajahi lokasi-lokasi ikonik seperti Arcade Klasik di Tokyo atau Studio Pixel di San Francisco.</p> -->
-        <button class="place-btn">Add Place</button>
+        
+        </div>
+
+
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">New Destination</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">×</button>
+            </div>
+            <div class="modal-body">
+                <form id="placeForm" class="row g-3">
+                    <div class="col-md-6">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="name" aria-describedby="emailHelp" required = "required">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="location" class="form-label">Location</label>
+                        <input type="text" class="form-control" id="location" required = "required">
+                    </div>
+                    <div class="col-12">
+                        <label for="description" class="form-label">Description</label>
+                        <input type="text" class="form-control" id="description">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="price" class="form-label">Price</label>
+                        <input type="number" class="form-control" id="price" aria-describedby="emailHelp" required = "required">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="rating" class="form-label">Rating</label>
+                        <select id="rating" class="form-control" required>
+                            <option value="" disabled selected>Select rating</option>
+                            <option value="1">⭐ 1</option>
+                            <option value="2">⭐⭐ 2</option>
+                            <option value="3">⭐⭐⭐ 3</option>
+                            <option value="4">⭐⭐⭐⭐ 4</option>
+                            <option value="5">⭐⭐⭐⭐⭐ 5</option>
+                        </select>
+                    </div>
+                    <div class="col-12">
+                        <label for="linkurl" class="form-label">Image URL</label>
+                        <input type="text" class="form-control" id="linkurl">
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" id="addPlace" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
+            </div>
+        </div>
+        </div>
+
+
+        <div class="modal fade" id="detailModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="detailPlaceLabel"></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">×</button>
+            </div>
+            <div class="modal-body">
+                <img alt="" id="detailImage">
+                
+                <div class="detail-content">
+                    <div class="detailLocPrice">
+                        <div id="detailLocation" class="detail-location"></div>
+                        <div id="detailPrice" class="detail-price"></div>
+                    </div>
+                    <p id="detailDesc" class="detail-desc"></p>
+                    
+                    <div id="detailRate" class="detail-rating"></div>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+
+        <div class="place-toolbar">
+            <select id="sorting" class="sort">
+                <option value="">Sort By</option>
+                <option value="price-asc">Price ↑</option>
+                <option value="price-des">Price ↓</option>
+                <option value="rating-asc">Rating ↑</option>
+                <option value="rating-des">Rating ↓</option>
+            </select>
+            <input type="text" id="search" class="place-search" placeholder="Search places...">
+            <button class="place-btn" id="addModal">+</button>
+        </div>
+            
+        <div id="placeDetail" class="row">
+        </div>
     </section>
 
     <script>
@@ -57,5 +158,6 @@ document.addEventListener("click", function playOnce() {
             });
         });
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 </html>

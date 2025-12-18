@@ -62,23 +62,23 @@ section {
     height: 10vh;
     flex-direction: row;
     align-items: flex-start;
+    height: 75vh;
 }
 .text-section {
-    flex: 1;
-    padding-right: 60%;
+  text-align: center;
 }
+
 .text-section h1 {
-    font-size: 24px;
-    margin-bottom: 20px;
-    word-wrap: break-word;
-    max-width: 100%;
-    margin-left: 40%;
+  font-size: 30px;
+  margin-bottom: 20px;
+  max-width: 100%;
 }
+
 .text-section p {
-    font-size: 12px;
-    line-height: 1.5;
-    margin-left: 40%;
+  font-size: 10px;
+  line-height: 1.5;
 }
+
 .image-section {
     flex: 0 0 75%; /* 3/4 dari lebar section */
     display: flex;
@@ -91,14 +91,59 @@ section {
     border: 4px solid #000; /* Border hitam untuk kontras */
     box-shadow: 0 0 10px #000; /* Shadow hitam */
 }
-#recomendation{
-    background-image: url('image/8351240.gif');
-    background-size: cover; 
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 10vh;
-    flex-direction: row;
-    align-items: flex-start;
+.audio-btn {
+    font-family: 'Press Start 2P', monospace;
+    position: absolute;
+    margin-bottom: 1.5rem;
+    padding: 0.8rem 1.8rem;
+    border: none;
+    border-radius: 30px;
+    background-color: #ff4655;
+    color: white;
+    cursor: pointer;
+    font-size: 5%;
+    transition: 0.3s ease;
+    position: absolute;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    
+}
+
+.audio-btn:hover {
+ transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+
+#Favorit {
+
+  position: relative;
+  padding: 4rem 3rem;
+  background-color: transparent;
+  color: white;
+  min-height: 300px;
+  background-image: url(image/8bit\ GIF.gif);
+  background-size: cover;
+  height: 50vh;
+  padding-top: 5rem;
+}
+
+#Favorit::before, #place::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35); 
+  z-index: 1;
+  pointer-events: none;
+}
+
+#Favorit h2 {
+  position: absolute;
+  top: 2.5rem;
+  left: 1.5rem;
+  margin: 0;
+  font-size: 2rem;
+  z-index: 3;
 }
 
 #place {
@@ -108,6 +153,13 @@ section {
   color: white;
   min-height: 300px;
   height: 100vh;
+  background-image: url(image/8351332.gif);
+  background-size: cover;
+  padding-top: 8rem;
+
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
 }
 
 /* h2 pojok kiri atas */
@@ -118,6 +170,7 @@ section {
   margin: 0;
   font-size: 2rem;
   margin-top: 1.5rem;
+  z-index: 2;
 }
 
 /* paragraf */
@@ -125,8 +178,7 @@ section {
 /* button */
 .place-btn {
     font-family: 'Press Start 2P', monospace;
-    position: absolute;
-    margin-top: 1.5rem;
+    margin-top: 0.25rem;
     padding: 0.8rem 1.8rem;
     border: none;
     border-radius: 30px;
@@ -135,13 +187,10 @@ section {
     cursor: pointer;
     font-size: 1rem;
     transition: 0.3s ease;
-    position: absolute;
-    top: 1.5rem;
-    right: 1.5rem;
-    
+    z-index: 2;
 }
 
-.place-btn:hover {
+.place-btn:hover, .sort:hover {
 
   transform: translateY(-2px);
   opacity: 0.9;
@@ -159,4 +208,363 @@ section {
     .image-section {
         flex: 1;
     }
+}
+
+#staticBackdrop .modal, #detailModal .modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1055;
+  display: none;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+#staticBackdrop.modal.show { display: block; }
+
+#staticBackdrop .modal-dialog, #detailModal .modal-dialog {
+  position: relative;
+  width: auto;
+  max-width: 540px; 
+  margin: 1.75rem auto;
+  pointer-events: none;
+}
+
+#staticBackdrop .modal-dialog.modal-dialog-centered, #detailModal .modal-dialog.modal-dialog-centered {
+  display: flex;
+  align-items: center;
+  min-height: calc(100% - 3.5rem);
+}
+
+#staticBackdrop .modal-content, #detailModal .modal-content {
+  pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #e6e6e6;
+  border: 2px solid #444;
+  border-radius:  15px;
+    font-family: "Press Start 2P", monospace;
+  outline: 0;
+  padding: 0; 
+}
+
+#staticBackdrop .modal-header,
+#staticBackdrop .modal-body,
+#staticBackdrop .modal-footer,
+#detailModal .modal-header,
+#detailModal .modal-body {
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+#staticBackdrop .modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: .5rem;
+  border-top: 1px solid var(--bs-border-color, #dee2e6);
+  margin-top: 1rem;
+  padding-top: 1rem;
+}
+
+#staticBackdrop .form-control {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 0.9rem;
+  padding: .5rem;
+}
+
+#staticBackdrop .row {
+  margin-right: calc(var(--bs-gutter-x, 1.5rem) * -0.5);
+  margin-left: calc(var(--bs-gutter-x, 1.5rem) * -0.5);
+}
+#staticBackdrop .row > * {
+  padding-right: calc(var(--bs-gutter-x, 1.5rem) * 0.5);
+  padding-left: calc(var(--bs-gutter-x, 1.5rem) * 0.5);
+  box-sizing: border-box;
+}
+
+#staticBackdrop .modal-footer > * {
+  box-sizing: border-box;
+}
+
+#staticBackdrop .form-label{
+    color: #000;
+    margin-bottom: 0.5rem;
+    display: inline-block;
+    font-weight: 500;
+    font-size: 0.8rem;
+    color: #333;
+}
+
+#staticBackdropLabel {
+    color: #333;
+    font-size: medium;
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: #000;
+  opacity: .5;
+  z-index: 1050;
+}
+
+.modal-body .col-md-6,
+.modal-body .col-12 {
+    margin-bottom: 1rem;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--bs-border-color);
+  background-color: #C8C8C8;
+  border-radius: 15px 15px 0 0;
+}
+
+.btn-close {
+  box-sizing: content-box;
+  width: 1em;
+  height: 1em;
+  padding: .25em;
+  background: transparent;
+  border: 0;
+  font-size: 1.25rem;
+  cursor: pointer;
+  opacity: .5;
+}
+
+.btn-close:hover {
+  opacity: .75;
+}
+
+modal-title {
+  font-size: 0.9rem;
+}
+
+
+#staticBackdrop .btn-primary {
+  background-color: #ff4655;
+  border-color: #ff4655;
+  font-family: "Press Start 2P", monospace;
+  transition: 0.3s ease;
+}
+
+#staticBackdrop .btn-secondary {
+  background-color: #666;
+  border-color: #666;
+  font-family: "Press Start 2P", monospace;
+  transition: 0.3s ease;
+}
+
+.card-img-top {
+    height: 130px;       
+    object-fit: cover;
+}
+
+#placeDetail {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 250px);
+    gap: 0.75rem; 
+    max-width: 1100px;
+    margin: 0 auto;
+    overflow-y: auto;
+    padding-right: 0.5rem;
+    padding-top: 0.5rem;
+    scroll-behavior: smooth;
+    height: calc(100vh - 8rem);
+    justify-content: center;
+    z-index: 2;
+}
+
+.card-button {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 8px;
+}
+
+.btn-custom {
+    transition: 0.3s ease;
+}
+
+.btn-custom:hover {
+    transform: translateY(-1px);
+    filter: brightness(0.75);
+}
+ 
+.card {
+    transition: transform 0.2s ease;
+    cursor: pointer;
+}
+
+.card:hover {
+    transform: scale(1.03);
+}
+
+#detailImage{
+    width: 20rem;
+    margin-bottom: 1rem;
+}
+
+#favoritePlace {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0.75rem;
+
+  overflow-x: auto;     
+  overflow-y: hidden;
+  padding-top: 1rem;
+  padding-bottom: 0.5rem;
+
+  scroll-behavior: smooth;
+
+  position: relative;
+  z-index: 2;
+}
+
+.favorite-viewport{
+    overflow: hidden;
+    max-width: 1100px;
+    margin: 0 auto; 
+}
+
+#favoritePlace .placeList {
+  flex: 0 0 260px; 
+}
+
+#favoritePlace::-webkit-scrollbar, #placeDetail::-webkit-scrollbar { display: none; }
+
+.place-toolbar{
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: 50%;
+    max-width: 1100px;
+    margin: 0 auto 1rem auto;
+
+    position: relative;
+    z-index: 3;
+}
+
+.place-search{
+    flex: 1;
+    width: 100%;
+    padding: 0.65rem 1rem;
+    font-family: "Press Start 2P", monospace;
+    font-size: 0.7rem;
+
+    color: #fff;
+    background: rgba(20, 20, 30, 0.65);
+
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 999px;
+
+    outline: none;
+    backdrop-filter: blur(6px);
+    transition: all 0.25 ease;
+
+}
+
+.place-search:focus{
+    border-color: #ffb703;
+    box-shadow: 
+        0 0 0 2px rgba(255, 183, 3, 0.3),
+        0 0 12px rgba(255, 183, 3, 0.35);
+}
+
+.place-search::placeholder{
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.sort {
+  height: 44px;
+  padding: 0 0.9rem;
+  border-radius: 999px;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.6rem;
+  background: #ff4655;
+  color: #fff;
+  border: 1px solid #ff4655;
+  cursor: pointer;
+  outline: none;
+  transition: 0.3s ease;
+}
+
+.sort option {
+  background: #14141e;
+  color: #fff;
+}
+
+#detailModal .modal-header{
+    padding: 12px 16px;
+}
+
+#detailModal .modal-title{
+    font-size: 1.2rem;
+    line-height: 1.1;
+    color:#333;
+}
+
+#detailModal .modal-body img{
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    object-position: center;
+
+    display: block;
+    margin: 0 auto 16px;
+    border-radius: 8px;
+}
+
+#detailModal .detailLocPrice {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    flex-wrap: nowrap;
+    margin-bottom: 0.75rem;
+    box-sizing: border-box;
+}
+
+.detail-location{
+    flex: 1 1 auto;
+    text-align: left;
+    color: #222;
+}
+
+.detail-price{
+    margin-left: auto;
+    flex: 0 0 auto;
+    text-align: right;
+    white-space: nowrap;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    opacity: 0.85;
+    color: #222;
+}
+
+
+.detail-desc{
+    text-align: center;
+    margin: 0.8rem auto 0.5rem;
+    font-size: large;
+    color: #222;
+}
+
+.detail-content{
+    background-color: #f6f6f6;
+    border-radius: 8px;
+    padding: 10px 14px ;
+    margin-top: 8px;
+    font-family: "Pixelify Sans", monospace;
+    font-size: 1.3rem;
+    line-height: 1.4;
+    font-weight: 800;
 }
