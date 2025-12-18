@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PixelArt Website</title>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
     <link rel="stylesheet" href="bootstrap.css">
     <link rel="stylesheet" href="style.css"> <!-- Link ke file CSS eksternal -->
@@ -46,9 +47,12 @@ document.addEventListener("click", function playOnce() {
     </section>
 
     <section id="place">
+        <div class="place-header"></div>
         <h2>Place</h2>
         <!-- <p>Jelajahi lokasi-lokasi ikonik seperti Arcade Klasik di Tokyo atau Studio Pixel di San Francisco.</p> -->
-        <button class="place-btn" id="addModal">+</button>
+        
+        </div>
+
 
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -112,17 +116,33 @@ document.addEventListener("click", function playOnce() {
             </div>
             <div class="modal-body">
                 <img alt="" id="detailImage">
-                <p id="detailLocation"></p>
-                <p id="detailPrice"></p>
-                <p id="detailDesc"></p>
-                <p id="detailRate"></p>
                 
+                <div class="detail-content">
+                    <div class="detailLocPrice">
+                        <div id="detailLocation" class="detail-location"></div>
+                        <div id="detailPrice" class="detail-price"></div>
+                    </div>
+                    <p id="detailDesc" class="detail-desc"></p>
+                    
+                    <div id="detailRate" class="detail-rating"></div>
+                </div>
             </div>
             </div>
         </div>
         </div>
 
-
+        <div class="place-toolbar">
+            <select id="sorting" class="sort">
+                <option value="">Sort By</option>
+                <option value="price-asc">Price ↑</option>
+                <option value="price-des">Price ↓</option>
+                <option value="rating-asc">Rating ↑</option>
+                <option value="rating-des">Rating ↓</option>
+            </select>
+            <input type="text" id="search" class="place-search" placeholder="Search places...">
+            <button class="place-btn" id="addModal">+</button>
+        </div>
+            
         <div id="placeDetail" class="row">
         </div>
     </section>

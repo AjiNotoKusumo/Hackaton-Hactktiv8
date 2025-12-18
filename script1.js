@@ -1,6 +1,8 @@
 let places = [];
 let modalMode = "add"
 let editingID = null;
+let searchInput = '';
+let sortMode = '';
 
 const placesForm = document.getElementById( "placeForm");
 const placeName = document.getElementById("name");
@@ -16,6 +18,8 @@ const placeFav = document.getElementById("favoritePlace");
 const modalLabel = document.getElementById("staticBackdropLabel");
 
 const addbutton = document.getElementById("addModal");
+const sortingButton = document.getElementById("sorting")
+const search = document.getElementById('search');
 const placeModalElement = document.getElementById("staticBackdrop");
 const placeModal = new bootstrap.Modal(placeModalElement);
 const detailModalElement = document.getElementById("detailModal")
@@ -90,6 +94,14 @@ function addPlaceElement(placeObj, container){
     container.appendChild(placeElement);
 }
 
+function formatCurrency(value, locale = "id-ID", currency = "IDR") {
+  return new Intl.NumberFormat(locale, {
+    style: "currency",
+    currency: currency,
+    minimumFractionDigits: 0
+  }).format(value);
+}
+
 function renderStars(rating){
     if(rating === 0){
         return 'No Rating'
@@ -127,7 +139,7 @@ function openDetailModal(placeID){
     detailLabel.textContent = placeData.name;
     detailImg.src = placeData.imageUrl;
     detailLocation.textContent = placeData.location;
-    detailPrice.textContent = placeData.price;
+    detailPrice.innerHTML = formatCurrency(placeData.price);
     detailDesc.textContent = placeData.description
     detailRate.innerHTML = renderStars(placeData.rating)
 
@@ -172,7 +184,27 @@ function render(list, container) {
 }
 
 function renderAll(){
-    render(places, placeDet);
+
+    let filteredplace = places
+
+    if(searchInput){
+        filteredplace = filteredplace.filter((place) => place.name.toLowerCase().includes(searchInput.toLowerCase()))
+    }
+
+    if(sortMode === 'price-asc'){
+        filteredplace =[...filteredplace].sort((a,b) => a.price - b.price)
+    }
+    if(sortMode === 'price-des') {
+        filteredplace =[...filteredplace].sort((a,b) => b.price - a.price)
+    }
+    if(sortMode === 'rating-asc'){
+        filteredplace =[...filteredplace].sort((a,b) => a.rating - b.rating)
+    }
+    if(sortMode === 'rating-des'){
+        filteredplace =[...filteredplace].sort((a,b) => b.rating - a.rating)
+    }
+
+    render(filteredplace, placeDet);
 
     const favorite = places.filter((place) => place.isFavorites)
     render(favorite, placeFav);
@@ -197,6 +229,15 @@ addbutton.addEventListener("click", function(){
     
 })
 
+search.addEventListener('input', function(){
+    searchInput = this.value;
+    renderAll()
+})
+
+sortingButton.addEventListener('change', function(){
+    sortMode = this.value;
+    renderAll()
+})
 
 placesForm.addEventListener("submit", function(event) {
     event.preventDefault()
@@ -221,6 +262,8 @@ placesForm.addEventListener("submit", function(event) {
         };
 
         places.push(newPlace);
+        search.value = '';
+        filterPlace = null;
     }
 
     if(modalMode === "edit"){
