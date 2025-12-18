@@ -241,8 +241,7 @@ placesForm.addEventListener("submit", function(event) {
     saveLocalStorage();
 
     renderAll();
+
     placesForm.reset();
     placeModal.hide();
 })
-
-
