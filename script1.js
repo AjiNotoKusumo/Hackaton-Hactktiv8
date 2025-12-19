@@ -44,6 +44,7 @@ function addPlaceElement(placeObj, container){
                                 <div class="card-body">
                                     <h5 class="card-title">${placeObj.name}</h5>
                                     <h6>${placeObj.location}</h6>
+                                    <h6>${formatCurrency(placeObj.price)}</h6>
                                     <p class="card-text">${renderStars(placeObj.rating)}</p>
                                 </div>`     
     
