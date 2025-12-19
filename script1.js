@@ -214,6 +214,14 @@ function renderAll(){
 
 
 document.addEventListener("DOMContentLoaded", function (){
+    let userInput = "";
+
+    while (userInput === "" || userInput === null) {
+        userInput = prompt("Please Put Your Name Here:");
+    }
+
+    document.getElementById('welcome').innerHTML = `Halo <b>${userInput}</b>, Selamat dtg di dunia pixelart yang penuh nostalgia! Di sini, Anda akan menemukan rekomendasi tempat-tempat unik dengan gaya retro. Jelajahi dunia 8-bit yang tak terlupakan.`
+
     places = loadLocalStorage();
     renderAll();
 })
