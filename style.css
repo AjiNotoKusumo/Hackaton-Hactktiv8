@@ -569,3 +569,6 @@ modal-title {
     font-weight: 800;
 }
 
+.card-body h6{
+    font-size: xx-small;
+}
